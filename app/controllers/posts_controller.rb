@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
+  before_action :get_categories, only: [:new, :edit, :create]
 
   # GET /posts
   # GET /posts.json
@@ -68,8 +69,15 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
+    def get_categories
+      categories = Category.all
+      @categories_options = categories.map do |c|
+        [c.title, c.id]
+      end
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.fetch(:post, {}).permit(:title, :body, :category_id)
+      params.fetch(:post, {}).permit(:title, :body, :category_id, :published)
     end
 end

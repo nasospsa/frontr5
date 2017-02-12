@@ -1,10 +1,10 @@
-<%= form_for(post) do |f| %>
-  <% if post.errors.any? %>
+<%= form_for(category) do |f| %>
+  <% if category.errors.any? %>
     <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+      <h2><%= pluralize(category.errors.count, "error") %> prohibited this category from being saved:</h2>
 
       <ul>
-      <% post.errors.full_messages.each do |message| %>
+      <% category.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
       </ul>
@@ -19,13 +19,6 @@
     <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control' %>
   </div>
-  <% if post.respond_to? 'category' %>
-  <div class="form-group">
-    <%= f.label :category_id %>
-    <%= f.select :category_id, @categories_options, class: 'form-control', selected: post.category && post.category.id %>
-  </div>
-  <% end %>
-
   <div class="form-group">
     <%= f.label :published %>
     <%= f.check_box :published %>

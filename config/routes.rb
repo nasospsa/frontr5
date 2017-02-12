@@ -11,4 +11,5 @@ Rails.application.routes.draw do
   delete 'logout' => 'sessions#logout', as: 'logout'
 
   resources :posts
+  resources :categories
 end
