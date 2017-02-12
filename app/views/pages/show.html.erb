@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+<dl>
+  <dt>ID</dt>
+  <dd><%= @page.id %></dd>
+  <dt>Title</dt>
+  <dd><%= @page.title %></dd>
+  <dt>Body</dt>
+  <dd><%= @page.body %></dd>
+  <dt>Published <i class="fa fa-<%= @page.published ? 'check' : 'times' %>" aria-hidden="true"></i></dt>
+</dl>
+
+<nav aria-label="...">
+  <ul class="pager" style="text-align: left;">
+    <li class="">
+      <%= link_to edit_page_path(@page) do %>
+        <i class="fa fa-edit"></i> Edit</a>
+      <% end %>
+    </li>
+    <li class="">
+      <%= link_to pages_path do %>
+        <i class="fa fa-chevron-left"></i> Back</a>
+      <% end %>
+  </ul>
+</nav>

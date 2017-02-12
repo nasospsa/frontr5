@@ -1,0 +1,45 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Pages</h1>
+
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <strong><small>
+    <div class="row">
+      <div class="col-sm-1">#</div>
+      <div class="col-sm-2">Title</div>
+      <div class="col-sm-3">Body</div>
+      <div class="col-sm-2">Published</div>
+      <div class="col-sm-4">Actions</div>
+    </div>
+    </strong></small>
+  </li>
+  <% @pages.each do |page| %>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-1">
+        <%= page.id %>
+      </div>
+      <div class="col-sm-2">
+        <%= page.title %>
+      </div>
+      <div class="col-sm-3">
+        <%= page.body %>
+      </div>
+      <div class="col-sm-2">
+        <i class="fa fa-<%= page.published ? 'check' : 'times' %>" aria-hidden="true"></i>
+      </div>
+      <div class="col-sm-4">
+        <%= link_to 'Show', page %> |
+        <%= link_to 'Edit', edit_page_path(page) %> |
+        <%= link_to 'Destroy', page, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </li>
+  <% end %>
+</ul>
+
+<br>
+
+<%= link_to 'New Page', new_page_path, class: 'btn btn-primary' %>
