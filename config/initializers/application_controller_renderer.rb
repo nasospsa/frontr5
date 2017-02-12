@@ -7,19 +7,12 @@
 
 module PatchedConnection
   def handle_response(resp)
-      puts 'ActiveResource::Connection-> handle_response'
-      puts resp['access-token']
-      puts resp.code
-
-      begin
-        RequestStore.store[:auth] = {
-          access_token: resp['access-token'],
-          client: resp['client'],
-          uid: resp['uid']
-        }
-      rescue Exception => e
-        puts "srry no session"
-      end
+      puts 'handle_response', resp['access-token'], resp.code
+      RequestStore.store[:auth] = {
+        access_token: resp['access-token'],
+        client: resp['client'],
+        uid: resp['uid']
+      }
 
       super resp
     end

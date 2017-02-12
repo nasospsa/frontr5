@@ -1,7 +1,11 @@
 <p id="notice"><%= notice %></p>
-<p><%= @post.id %></p>
-<p><%= @post.title %></p>
-<p><%= @post.body %></p>
-<pre><%= @post.to_json %></pre>
+<dl>
+  <dt>ID</dt>
+  <dd><%= @post.id %></dd>
+  <dt>Title</dt>
+  <dd><%= @post.title %></dd>
+  <dt>Body</dt>
+  <dd><%= @post.body %></dd>
+</dl>
 <%= link_to 'Edit', edit_post_path(@post) %> |
 <%= link_to 'Back', posts_path %>
