@@ -19,12 +19,15 @@
     <%= f.label :body %>
     <%= f.text_area :body, class: 'form-control' %>
   </div>
-  <% if post.respond_to? 'category' %>
   <div class="form-group">
     <%= f.label :category_id %>
     <%= f.select :category_id, @categories_options, class: 'form-control', selected: post.category && post.category.id %>
   </div>
-  <% end %>
+
+  <div class="form-group">
+    <%= f.label :tags, 'Tags (space seperated)'  %>
+    <%= f.text_field :tags, class: 'form-control', value: post.tags && post.tags.map {|t| t.key }.join(' ') %>
+  </div>
 
   <div class="form-group">
     <%= f.label :published %>

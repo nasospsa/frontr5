@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: [:show, :edit, :update, :destroy]
-  before_action :get_categories, only: [:new, :edit, :create]
+  before_action :get_categories, only: [:new, :edit]
 
   # GET /posts
   # GET /posts.json
@@ -25,7 +25,7 @@ class PostsController < ApplicationController
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(post_params.to_h)
+    @post = Post.new(build_tags post_params.to_h)
 
     respond_to do |format|
       if @post.save
@@ -43,7 +43,9 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     respond_to do |format|
-      if @post.update_attributes(post_params.to_h)
+      @post.load(build_tags post_params.to_h)
+
+      if @post.save
         format.html { redirect_to @post, notice: 'Post was successfully updated.' }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -76,8 +78,14 @@ class PostsController < ApplicationController
       end
     end
 
+    def build_tags(post_attrs)
+      if post_attrs['tags']
+        post_attrs['tags'] = post_attrs['tags'].split.map { |t| Tag.new(key: t).attributes.to_h  }
+      end
+      post_attrs
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params
-      params.fetch(:post, {}).permit(:title, :body, :category_id, :published)
+      params.fetch(:post, {}).permit(:title, :body, :category_id, :published, :tags)
     end
 end

@@ -8,6 +8,8 @@
   <dd><%= @post.body %></dd>
   <dt>Category</dt>
   <dd><%= @post.category && @post.category.title %></dd>
+  <dt>Tags</dt>
+  <dd><%= @post.tags.length > 0 ? @post.tags.map {|t| t.key }.join(', ') : '-' %></dd>
   <dt>Published <i class="fa fa-<%= @post.published ? 'check' : 'times' %>" aria-hidden="true"></i></dt>
 </dl>
 

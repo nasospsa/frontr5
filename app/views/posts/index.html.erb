@@ -10,7 +10,8 @@
       <div class="col-sm-2">Title</div>
       <div class="col-sm-3">Body</div>
       <div class="col-sm-2">Category</div>
-      <div class="col-sm-4">Actions</div>
+      <div class="col-sm-1">Tags</div>
+      <div class="col-sm-3">Actions</div>
     </div>
     </strong></small>
   </li>
@@ -27,7 +28,8 @@
         <%= post.body %>
       </div>
       <div class="col-sm-2"><%= post.category.title %></div>
-      <div class="col-sm-4">
+      <div class="col-sm-1"><%= post.tags.length %></div>
+      <div class="col-sm-3">
         <%= link_to 'Show', post %> |
         <%= link_to 'Edit', edit_post_path(post) %> |
         <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
