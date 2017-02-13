@@ -1,0 +1,36 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Tags</h1>
+
+<ul class="list-group">
+  <li class="list-group-item">
+    <strong><small>
+    <div class="row">
+      <div class="col-sm-1">#</div>
+      <div class="col-sm-3">Key</div>
+      <div class="col-sm-1">No of Posts</div>
+      <div class="col-sm-3">Created</div>
+      <div class="col-sm-4">Actions</div>
+    </div>
+    </strong></small>
+  </li>
+  <% @tags.each do |tag| %>
+  <li class="list-group-item">
+    <div class="row">
+      <div class="col-sm-1">
+        <%= tag.id %>
+      </div>
+      <div class="col-sm-3">
+        <%= tag.key %>
+      </div>
+      <div class="col-sm-1">
+        <%= tag.post_count %>
+      </div>
+      <div class="col-sm-3"><%= tag.created_at %></div>
+      <div class="col-sm-4">
+        <%= link_to 'Destroy', tag, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </div>
+    </div>
+  </li>
+  <% end %>
+</ul>

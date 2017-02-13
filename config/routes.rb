@@ -15,4 +15,5 @@ Rails.application.routes.draw do
   resources :posts
   resources :categories
   resources :pages
+  resources :tags, only: [:index, :destroy]
 end
