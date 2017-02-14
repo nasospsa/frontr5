@@ -8,6 +8,8 @@ class ApplicationController < ActionController::Base
   end
 
   def save_to_session
+    return if RequestStore.store[:auth].blank?
+
     auth = RequestStore.store[:auth]
     if auth[:access_token]
       puts 'need to save_to_session'

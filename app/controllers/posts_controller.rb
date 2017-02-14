@@ -5,7 +5,12 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    begin
+      @posts = Post.all
+    rescue Exception => e
+      session[:auth] = nil
+      redirect_to :sign_in
+    end
   end
 
   # GET /posts/1
@@ -32,7 +37,6 @@ class PostsController < ApplicationController
         format.html { redirect_to @post, notice: 'Post was successfully created.' }
         format.json { render :show, status: :created, location: @post }
       else
-        puts @post.inspect
         format.html { render :new }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end
